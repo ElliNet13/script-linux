@@ -1,2 +1,2 @@
-# python-rootfs
-A rootfs with most tools replaced with python scriot
+# Python3 Linux RootFS
+A rootfs with most tools replaced with python script.
