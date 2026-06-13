@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo Welcome to ElliNet13 script Linux!
+while true; do
+    setsid cttyhack /bin/sh
+done

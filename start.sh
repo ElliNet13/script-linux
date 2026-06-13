@@ -14,11 +14,13 @@ KERNEL="${KERNEL:-./vmlinuz}"
 MEMORY="${MEMORY:-1024M}"
 
 INITRD="./initramfs.cpio.gz"
-ROOTFS="./rootfs"
+ROOTFS="./rootfs.qcow2"
 
-if [ ! -d "$ROOTFS" ]; then
-    echo "rootfs folder not found: $ROOTFS"
-    exit 1
+if [ ! -f "$ROOTFS" ]; then
+    echo "rootfs not found: $ROOTFS"
+    echo "Generating rootfs..."
+    ./generaterootfs.sh
+    echo "Done."
 fi
 
 if [ ! -f "$KERNEL" ]; then
@@ -46,5 +48,8 @@ qemu-system-x86_64 \
   -initrd "$INITRD" \
   -m "$MEMORY" \
   -nographic \
+  -drive file="$ROOTFS",format=qcow2,if=none,id=drv0 \
+  -device ahci,id=ahci0 \
+  -device ide-hd,drive=drv0 \
   -serial mon:stdio \
-  -append "console=ttyS0,115200n8 earlycon rdinit=/sbin/init"
+  -append "console=ttyS0,115200n8 earlycon rdinit=/sbin/init root=/dev/sda rw"

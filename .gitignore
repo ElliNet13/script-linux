@@ -224,8 +224,12 @@ vmlinuz
 initrd.img
 
 # Work directories
-initramfsworkdir/
+*workdir/
 testdir/
 
 # Generated files
 initramfs.cpio.gz
+rootfs.qcow2
+
+# Exclude some specific files
+!/lib
