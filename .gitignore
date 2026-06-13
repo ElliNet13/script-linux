@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Kernel and initrd Images
+vmlinuz
+initrd.img
+
+# Work directories
+initramfsworkdir/
+testdir/
+
+# Generated files
+initramfs.cpio.gz
